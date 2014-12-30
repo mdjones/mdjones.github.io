@@ -3,7 +3,7 @@ retrieveQuiz = function(quizID) {
  var rQuiz
     angular.forEach(quizzes, function(quiz){
          if(quizID === quiz.id){
-          rQuiz = quiz
+            rQuiz = quiz
          }
      });
      return rQuiz

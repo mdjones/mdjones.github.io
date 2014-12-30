@@ -3,12 +3,49 @@
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>
 
+    <script src="quizModel.js"></script>
     <script src="quizController.js"></script>
     <script src="jsonQuizResource.js"></script>
     <script src="quizResource.js"></script>
+
+
     <link rel="stylesheet" href="quiz.css">
+
+    <link type="text/css" rel="stylesheet" href="../d3Plotting/demo.css">
+    <link type="text/css" rel="stylesheet" href="../d3Plotting/scatter-matrix.css">
+
+
+    <style>
+        body {
+        font: 11px sans-serif;
+        }
+
+        .axis path,
+        .axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+        }
+
+        .dot {
+        stroke: #000;
+        }
+
+        .tooltip {
+        position: absolute;
+        width: 200px;
+        height: 28px;
+        pointer-events: none;
+        }
+    </style>
+
+
 </head>
 <body>
+<!--<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>-->
+<!--<script src="./d3Helpers.js"></script>-->
+
+
 <h2>Todo</h2>
 <div ng-controller="QuizController">
     <span>{{remaining()}} of {{todos.length}} remaining</span>
@@ -62,6 +99,14 @@
 
 
 <div d3-bars bar-height="20" bar-padding="5"></div>
+
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="../d3Plotting/scatter-matrix.js"></script>
+<!--<script type="text/javascript">-->
+      <!--var sm = new ScatterMatrix('../d3Plotting/demo.csv');-->
+      <!--sm.render();-->
+    <!--</script>-->
+</body>
 
 </body>
 </html>
