@@ -33,22 +33,17 @@ angular.module('quizApp', [])
      // {quizName:quizName, caring:normalizedScore, directness:normalizedScore}
      scoreAnswers = function(answers, maxValue, minValue) {
 
-        totPosMaxAndMinScores = getTotalPossibleMaxAndMinScores(answers) //TODO: Build this into a quiz object
-
-        maxScore = totPosMaxAndMinScores['maxScore']
-        minScore = totPosMaxAndMinScores['minScore']
-
-        quizName = undefined
+        quizID = undefined
         //Initialize Score Map
         var variableScoreMap = {}
         for(var i in answers){
             var answer = answers[i]
             variableScoreMap[answer.question.variable] = 0;
 
-            if (typeof quizName === 'undefined') {
-                quizName = answer.quiz.name
-            } else if(quizName != answer.quiz.name) {
-                 throw "Answers are not from the same quiz";
+            if (typeof quizID === 'undefined') {
+                quizID = answer.quiz.id
+            } else if(quizID != answer.quiz.id) {
+                 throw "Answers are not from the same id";
             }
         }
 
@@ -69,8 +64,14 @@ angular.module('quizApp', [])
         }
 
         //Normalize Scores
-        var scoreHolderMap = {quizName:quizName}
+        var scoreHolderMap = {quizName:quizID}
+        quiz = retrieveQuiz(quizID)
+
         for(var variable in variableScoreMap){
+            totPosMaxAndMinScores = quiz.maxAndMinPossibleScore(variable)
+
+            maxScore = totPosMaxAndMinScores['maxScore']
+            minScore = totPosMaxAndMinScores['minScore']
 
             var rawScore = variableScoreMap[variable];
 
@@ -86,22 +87,6 @@ angular.module('quizApp', [])
         }
 
         return scoreHolderMap
-     }
-
-     getTotalPossibleMaxAndMinScores = function(answers){
-        maxAndMinScore = {maxScore:0, minScore:0}
-        for(var i in answers){
-            var answer = answers[i]
-            variable = answer.question.variable
-            sign = answer.question.sign
-
-            if (sign === 'positive') {
-               maxAndMinScore['maxScore'] = maxAndMinScore['maxScore']+5
-            }else if (sign === 'negative') {
-                  maxAndMinScore['minScore'] = maxAndMinScore['minScore']+5
-            }
-        }
-        return maxAndMinScore
      }
 
   }]);

@@ -6,6 +6,8 @@ retrieveQuiz = function(quizID) {
             rQuiz = quiz
          }
      });
+
+     rQuiz = decorateQuiz(rQuiz)
      return rQuiz
 }
 
