@@ -37,9 +37,15 @@ angular.module('quizApp', [])
            var answer = answers[i]
            console.log(answer.question.id +":"
                     + answer.question.question + "=" + answer.score);
-            var questionRank = parseInt(answer.score);
+            var score = parseInt(answer.score);
+
+            if(answer.question.sign === 'negative'){
+                score=-score;
+            }
+
+
             var currentScore = variableScoreMap[answer.question.variable];
-            variableScoreMap[answer.question.variable] = currentScore + questionRank;
+            variableScoreMap[answer.question.variable] = currentScore + score;
         }
 
         //Normalize Scores
