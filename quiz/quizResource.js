@@ -1,5 +1,4 @@
 retrieveQuiz = function(quizID) {
- console.log(quizzes)
  var rQuiz
     angular.forEach(quizzes, function(quiz){
          if(quizID === quiz.id){
@@ -12,8 +11,6 @@ retrieveQuiz = function(quizID) {
 }
 
 retrieveQuestion = function(quiz, questionID) {
-    console.log('Looking for ' + questionID + " in ")
-    console.log(quiz)
     var rQuestion
     for (var i in quiz.questions){
         question = quiz.questions[i]
